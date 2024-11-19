@@ -9,5 +9,17 @@ let pessoa = {
     }
 }
 
+let objeto = {
+    nome: "Leonardo",
+    sobreNome: "Broinizi de Farias",
+    idade: 33,
+    altura: 183,
+    peso: 85
+}
+
+console.log(objeto.nome, objeto.sobreNome)
+objeto.nome = "Henrique"
+console.log(objeto.nome, objeto.sobreNome)
+
 console.log(pessoa.nome + ' ' + pessoa.sobrenome);
 console.log(pessoa.nomeCompleto()); // Essa é a sintaxe para acessar a função do objeto.

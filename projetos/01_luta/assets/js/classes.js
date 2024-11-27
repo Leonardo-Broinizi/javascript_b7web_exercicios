@@ -58,7 +58,7 @@ class BigMonster extends Character {
 }
 
 class Stage {
-    constructor(fighter1, fighter2, fighter1El, fighter2El, logObject) {
+    constructor(fighter1, fighter2, fighter1El, fighter2El, Object) {
         this.fighter1 = fighter1;
         this.fighter2 = fighter2;
         this.fighter1El = fighter1El;

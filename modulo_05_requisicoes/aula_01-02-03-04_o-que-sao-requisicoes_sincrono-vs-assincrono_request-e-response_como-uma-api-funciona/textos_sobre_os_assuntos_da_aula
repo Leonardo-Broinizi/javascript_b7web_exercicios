@@ -503,4 +503,100 @@ fetch('https://api.exemplo.com/usuarios')
 APIs são o **alicerce da web moderna**, pois tornam possível a integração e automação de sistemas.
 
 
-Resumo do que entendi sobre o assunto: APIs são meios padronizados de comunicação entre diferentes sistemas.
+Resumo do que entendi sobre o assunto: APIs são meios padronizados de comunicação entre diferentes sistemas. Devemos fazer requisições (requests) para servidores através de APIs e receber suas respostas (responses). Devo aprender as opções, sintaxe e erros mais comuns nesse processo.
+
+
+
+Adendo: o que é json? 
+
+Meu entendimento: json é um formato muito utilizado nas requests e responses das APIs por ser simples e eficiente. 
+
+Prompt: Agora me ensine o que é um json de uma API.
+
+Resposta: ### **O que é JSON em uma API?**
+
+**JSON** (**JavaScript Object Notation**) é um formato leve e muito utilizado para transmitir dados entre um servidor e um cliente em APIs (Interfaces de Programação de Aplicações). Ele é fácil de ler para humanos e simples de interpretar para máquinas, sendo compatível com várias linguagens de programação.
+
+---
+
+### **Por que JSON é usado em APIs?**
+
+Quando uma API recebe uma requisição (como `GET`, `POST`, `PUT` ou `DELETE`), ela geralmente responde com informações. Essas informações são frequentemente enviadas no formato JSON porque:
+
+1. **É estruturado e organizado:**  
+   JSON usa uma estrutura de chave-valor que representa objetos, arrays e dados hierárquicos.  
+   Exemplo:
+   ```json
+   {
+       "id": 1,
+       "name": "Leonardo",
+       "email": "leonardo@email.com",
+       "age": 32
+   }
+   ```
+
+2. **É leve:**  
+   JSON elimina elementos desnecessários, como tags (usadas em XML), reduzindo o tamanho da resposta.
+
+3. **É fácil de usar:**  
+   - Em JavaScript, o JSON pode ser convertido diretamente para objetos usando `JSON.parse()` e transformado de volta em string com `JSON.stringify()`.
+
+---
+
+### **Estrutura de um JSON em uma API**
+Um JSON pode conter:
+- **Objetos:** Representados por `{}`.
+- **Arrays:** Representados por `[]`.
+- **Valores primitivos:** Strings, números, booleanos e nulos.
+
+**Exemplo de resposta JSON de uma API:**
+```json
+{
+   "success": true,
+   "data": [
+       {
+           "id": 1,
+           "name": "Banana",
+           "price": 3.5
+       },
+       {
+           "id": 2,
+           "name": "Maçã",
+           "price": 4.2
+       }
+   ],
+   "message": "Itens carregados com sucesso"
+}
+```
+
+---
+
+### **Como JSON é usado em APIs?**
+1. **Requisições enviando JSON:**
+   Um cliente pode enviar informações ao servidor em formato JSON.  
+   Exemplo de corpo de uma requisição `POST`:
+   ```json
+   {
+       "username": "Leonardo",
+       "password": "senha123"
+   }
+   ```
+
+2. **Respostas com JSON:**
+   A API pode retornar um JSON com os dados solicitados ou mensagens informativas.  
+   Exemplo de resposta de erro:
+   ```json
+   {
+       "success": false,
+       "error": "Usuário não encontrado"
+   }
+   ```
+
+---
+
+### **Resumo**
+- **JSON** é a "linguagem" que APIs usam para trocar dados.
+- Ele é **padronizado**, **fácil de usar** e **amplamente aceito**.
+- No desenvolvimento, você trabalha com JSON para consumir dados de APIs, como buscar informações de um banco de dados, registrar usuários, ou exibir listas de produtos em um site.
+
+Se precisar de ajuda prática com APIs e JSON, é só perguntar! 😊

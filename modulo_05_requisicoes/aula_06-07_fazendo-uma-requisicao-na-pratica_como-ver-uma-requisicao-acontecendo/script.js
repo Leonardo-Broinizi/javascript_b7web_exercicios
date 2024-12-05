@@ -2,10 +2,13 @@
 
 
 function clicou() {
-    fetch('https://jsonplaceholder.typicode.com/posts')
-    .then((data) => {
-        console.log(data);
-    })
+    fetch('https://jsonplaceholder.typicode.com/todos')
+        .then((response) => {
+           return response.json();
+       })
+        .then((json) => {
+            alert(`Título do primeiro post: ${json[0].title}`);
+       })
 }
 
 document.querySelector('#botao').addEventListener('click', clicou); 

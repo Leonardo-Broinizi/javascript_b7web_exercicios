@@ -16,7 +16,56 @@ function clicou() {
 
 document.querySelector('#botao').addEventListener('click', clicou);
 
-QUESTIONAMENTO AO CHATGPT: 
+
+
+
+// Pelo que entendi, uma promise é uma promessa de que algo será retornado no futuro, e serve para que o código possa continuar enquanto algo mais demorado está em curso, sem que o andamento desse código precise esperar essa, por exemplo, requisição. 
+
+// Texto gerado pelo Chat GPT:
+
+/* 
+Prompt: Me explique novamente o que é uma promise em JavaScript. Não precisa dar uma resposta muito longa. 
+
+Resposta: Uma **Promise** em JavaScript é um objeto usado para representar a eventual conclusão (ou falha) de uma operação assíncrona e seu resultado correspondente. 
+
+### Características principais:
+1. **Estados**:
+   - **Pending**: A promise foi criada, mas ainda não foi resolvida nem rejeitada.
+   - **Fulfilled**: A operação foi concluída com sucesso, e um valor está disponível.
+   - **Rejected**: A operação falhou, e um motivo (erro) está disponível.
+
+2. **Métodos**:
+   - **`.then()`**: É chamado quando a promise é resolvida com sucesso.
+   - **`.catch()`**: É chamado quando a promise é rejeitada.
+   - **`.finally()`**: Executa uma ação após a promise ser resolvida ou rejeitada.
+
+### Exemplo simples:
+
+```javascript
+const myPromise = new Promise((resolve, reject) => {
+  let success = true;
+
+  if (success) {
+    resolve("Operação bem-sucedida!");
+  } else {
+    reject("Algo deu errado.");
+  }
+});
+
+myPromise
+  .then(result => console.log(result))  // Se for resolvida, exibe: Operação bem-sucedida!
+  .catch(error => console.error(error));  // Se for rejeitada, exibe: Algo deu errado.
+```
+
+As **Promises** ajudam a organizar código assíncrono, tornando-o mais legível e menos sujeito ao famoso *callback hell*.
+*/
+
+
+
+
+
+/*
+ALGUNS QUESTIONAMENTOS QUE FIZ AO CHATGPT PARA COMPREENDER MELHOR A QUESTÃO: 
 
 Algumas dúvidas sobre o código e sua explicação: Você disse que o alert("OPA, CLICOU!") é executado antes da conclusão da requisição do .fetch, mas o fecth já está 'trabalhando', certo? Ele é (como eu poderia dizer...) 'chamado' antes do alert(opa), mas como demora pra responder o alert(opa) é executado primeiro, certo?
 
@@ -61,45 +110,50 @@ RESPOSTA:
    - Usamos uma função (arrow function ou não) no `.then` porque o método espera um callback. Não é possível simplesmente "jogar" o `return response.json()` no `.then` sem envolvê-lo em uma função.
 
 
+Responda bem resumidamente: essa função é um callback por estar dentro de fetch que é também é uma função?
+O ChatGPT disse:
+ChatGPT
+Sim, essa função é um callback porque é passada como argumento para o método .then, que a chama posteriormente, após o fetch concluir sua operação assíncrona.
 
 
-// Pelo que entendi, uma promise é uma promessa de que algo será retornado no futuro, e serve para que o código possa continuar enquanto algo mais demorado está em curso, sem que o andamento desse código precise esperar essa, por exemplo, requisição. 
 
-// Texto gerado pelo Chat GPT:
 
-/* 
-Prompt: Me explique novamente o que é uma promise em JavaScript. Não precisa dar uma resposta muito longa. 
+Você disse:
+Responda ainda sucintamente: o .then é um método de qual função?
+O ChatGPT disse:
+ChatGPT
+O .then é um método da classe Promise.
 
-Resposta: Uma **Promise** em JavaScript é um objeto usado para representar a eventual conclusão (ou falha) de uma operação assíncrona e seu resultado correspondente. 
 
-### Características principais:
-1. **Estados**:
-   - **Pending**: A promise foi criada, mas ainda não foi resolvida nem rejeitada.
-   - **Fulfilled**: A operação foi concluída com sucesso, e um valor está disponível.
-   - **Rejected**: A operação falhou, e um motivo (erro) está disponível.
 
-2. **Métodos**:
-   - **`.then()`**: É chamado quando a promise é resolvida com sucesso.
-   - **`.catch()`**: É chamado quando a promise é rejeitada.
-   - **`.finally()`**: Executa uma ação após a promise ser resolvida ou rejeitada.
+Você disse:
+Responda brevemente: qual é a diferença entre um método e uma função?
 
-### Exemplo simples:
 
-```javascript
-const myPromise = new Promise((resolve, reject) => {
-  let success = true;
 
-  if (success) {
-    resolve("Operação bem-sucedida!");
-  } else {
-    reject("Algo deu errado.");
-  }
-});
+O ChatGPT disse:
+ChatGPT
+A diferença está no contexto em que são usadas:
 
-myPromise
-  .then(result => console.log(result))  // Se for resolvida, exibe: Operação bem-sucedida!
-  .catch(error => console.error(error));  // Se for rejeitada, exibe: Algo deu errado.
-```
+Função: É um bloco de código independente que pode ser chamado em qualquer lugar.
+Método: É uma função associada a um objeto ou classe, sendo chamada através desse objeto ou classe.
 
-As **Promises** ajudam a organizar código assíncrono, tornando-o mais legível e menos sujeito ao famoso *callback hell*.
+
+
+Você disse:
+Qual é a classe  ou objeto onde o método .then está?
+O ChatGPT disse:
+ChatGPT
+O método .then pertence à classe Promise. Ele é usado para manipular o resultado ou lidar com erros de uma promessa criada por um objeto do tipo Promise.
+
+
+
+Você disse:
+fetch também é um método da classe Promise?
+
+
+
+O ChatGPT disse:
+ChatGPT
+Não, fetch não é um método da classe Promise. Ele é uma função global no JavaScript que retorna uma Promise. A Promise retornada pelo fetch é manipulada usando métodos como .then ou .catch.
 */

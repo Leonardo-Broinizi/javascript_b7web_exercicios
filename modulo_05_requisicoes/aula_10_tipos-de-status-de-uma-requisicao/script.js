@@ -16,5 +16,5 @@ function clicou() {
         });
 }
 
-
+alert()
 document.querySelector('#botao').addEventListener('click', clicou);

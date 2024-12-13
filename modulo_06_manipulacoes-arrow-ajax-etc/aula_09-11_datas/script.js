@@ -25,8 +25,11 @@ let d = new Date();
 
 // let novoValor = d.getTime(); // Retorna a quantidade de milissegundos trancorridos desde as 00h00 de 01/01/1970 (ou 21h00 de 31/12/1969) até o momento em que essa função for chamada/atualizada.
  
-let n_d = Date.now();
-console.log(n_d); 
+d.setFullYear(1991);  // Método para trocar o ano.
+d.setMonth(8);        // Altera o mês.
+d.setDate(d.getDate() + 5);         // Altera o dia (e pode, como no exemplo, acresentar ou diminuir x número de dias ao dia atual com a sintaxe deste exemplo).
+d.setHours(d.getHours() + 48); // Altera as horas. OBS.: Nos métodos que acrestentam tempo (dias, horas...), caso o acréscimo faça as outras unidades de tempo mudarem (por exemplo: 20 horas mais 10 horas aumentariam um dia), o sistema automaticamente fará essas alterações.
 
-
+let novoValor = d;
+console.log(novoValor)
 

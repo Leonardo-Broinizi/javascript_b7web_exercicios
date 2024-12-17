@@ -1,0 +1,204 @@
+### **Aula: Código Síncrono vs Código Assíncrono em JavaScript** 🚀
+
+Olá, pessoal! Hoje vamos falar sobre um dos conceitos mais importantes (e às vezes confusos) da programação em **JavaScript**: **código síncrono vs código assíncrono**. Entender essa diferença é essencial para lidar com tarefas que **demoram a ser executadas**, como acessar dados de uma API, ler arquivos ou esperar ações do usuário.
+
+---
+
+## **1. O que é Código Síncrono?**
+
+**Código síncrono** é executado **de cima para baixo**, linha por linha, **bloqueando** o fluxo de execução até que a operação atual seja concluída.
+
+### Características:
+- Cada tarefa é realizada **sequencialmente**.
+- Uma linha de código **espera** a anterior ser executada antes de prosseguir.
+- Problemas podem surgir se uma operação demorar demais, pois o programa "trava" até que ela termine.
+
+---
+
+### **Exemplo de Código Síncrono**
+```javascript
+console.log("Primeira tarefa");
+console.log("Segunda tarefa");
+console.log("Terceira tarefa");
+```
+
+#### **Saída:**
+```
+Primeira tarefa
+Segunda tarefa
+Terceira tarefa
+```
+
+Aqui, cada `console.log()` é executado na ordem em que aparece.
+
+---
+
+### **Problema com o Código Síncrono**
+Imagine que temos uma operação demorada, como ler um arquivo ou buscar dados em um servidor:
+
+```javascript
+function tarefaDemorada() {
+  for (let i = 0; i < 1e9; i++) {} // Simula uma tarefa demorada
+}
+
+console.log("Início");
+tarefaDemorada();
+console.log("Fim");
+```
+
+#### **Saída:**
+```
+Início
+Fim (depois de um longo atraso)
+```
+
+Nesse caso, o código **bloqueia** o restante da execução até que a tarefa demorada termine. Isso é problemático em aplicações que precisam continuar funcionando sem travar.
+
+---
+
+## **2. O que é Código Assíncrono?**
+
+**Código assíncrono** permite que o programa **continue executando** outras tarefas enquanto espera a conclusão de uma operação mais demorada.
+
+### Características:
+- Não bloqueia o fluxo de execução.
+- Permite que operações "lentas" rodem em segundo plano.
+- Muito usado em tarefas como requisições HTTP, leitura de arquivos e temporizadores.
+
+---
+
+### **Exemplo de Código Assíncrono**
+Em JavaScript, funções assíncronas são comuns ao usar **`setTimeout`**, **Promises**, ou **async/await**.
+
+```javascript
+console.log("Início");
+
+setTimeout(() => {
+  console.log("Tarefa assíncrona concluída");
+}, 2000); // Espera 2 segundos
+
+console.log("Fim");
+```
+
+#### **Saída:**
+```
+Início
+Fim
+Tarefa assíncrona concluída
+```
+
+### O que aconteceu?
+1. **`setTimeout`** agenda a execução da função de callback para depois de 2 segundos.
+2. O JavaScript continua executando o restante do código (a linha `console.log("Fim")`).
+3. Após 2 segundos, a função dentro do `setTimeout` é executada.
+
+---
+
+## **3. A Event Loop: O coração do Assíncrono no JS**
+O JavaScript usa um modelo chamado **Event Loop** para lidar com tarefas assíncronas. Funciona assim:
+
+1. **Call Stack**: Onde as funções são executadas (síncronas).
+2. **Web APIs**: Executam tarefas assíncronas (ex.: `setTimeout` ou `fetch`).
+3. **Task Queue**: Onde as funções assíncronas aguardam para serem colocadas na Call Stack quando estiverem prontas.
+
+### Resumo do Fluxo:
+- O código síncrono é executado **imediatamente** na Call Stack.
+- O código assíncrono (ex.: temporizadores ou chamadas a servidores) é enviado para as **Web APIs** e fica aguardando.
+- Quando a tarefa assíncrona é concluída, ela é movida para a **Task Queue**.
+- O **Event Loop** verifica se a Call Stack está vazia e, então, move as tarefas da Task Queue para a Call Stack.
+
+---
+
+## **4. Trabalhando com Assíncrono: Promises e async/await**
+
+### **Promises**
+As Promises são usadas para lidar com código assíncrono de forma mais organizada.
+
+**Exemplo:**
+```javascript
+const minhaPromise = new Promise((resolve, reject) => {
+  setTimeout(() => {
+    resolve("Tarefa concluída!");
+  }, 2000);
+});
+
+console.log("Início");
+
+minhaPromise.then((resultado) => {
+  console.log(resultado);
+});
+
+console.log("Fim");
+```
+
+#### **Saída:**
+```
+Início
+Fim
+Tarefa concluída!
+```
+
+- **`resolve`** indica que a tarefa foi concluída com sucesso.
+- O `.then()` é usado para executar algo após a conclusão da Promise.
+
+---
+
+### **Async/Await**: Uma forma mais simples de lidar com Promises
+`async/await` torna o código assíncrono mais legível, parecendo síncrono.
+
+**Exemplo:**
+```javascript
+function esperar() {
+  return new Promise((resolve) => {
+    setTimeout(() => resolve("Tarefa concluída!"), 2000);
+  });
+}
+
+async function executar() {
+  console.log("Início");
+  const resultado = await esperar();
+  console.log(resultado);
+  console.log("Fim");
+}
+
+executar();
+```
+
+#### **Saída:**
+```
+Início
+Tarefa concluída!
+Fim
+```
+
+### O que aconteceu?
+1. A função `executar` é assíncrona.
+2. A palavra-chave **`await`** pausa a execução da função até a Promise ser resolvida.
+3. O código **fora** da função `executar` continua sendo executado normalmente.
+
+---
+
+## **5. Diferença entre Síncrono e Assíncrono**
+
+| **Código Síncrono**                      | **Código Assíncrono**                  |
+|-----------------------------------------|----------------------------------------|
+| Executa linha por linha, bloqueando.     | Não bloqueia; executa em segundo plano.|
+| Bom para tarefas rápidas e simples.      | Ideal para tarefas demoradas (ex.: I/O).|
+| Pode travar a aplicação.                 | Mantém a aplicação responsiva.         |
+
+---
+
+## **6. Exercício para Fixação**
+1. Crie um código que simule:
+   - Uma tarefa **síncrona** que demora 3 segundos (use um `for` gigante, como fizemos antes).
+   - Uma tarefa **assíncrona** com `setTimeout` de 2 segundos.
+2. Mostre no console a ordem de execução.
+
+---
+
+## **Conclusão**
+- Código **síncrono** executa tarefas de forma sequencial e bloqueante.
+- Código **assíncrono** permite executar tarefas demoradas sem bloquear o fluxo principal.
+- Ferramentas como **`setTimeout`**, **Promises** e **async/await** facilitam o uso de código assíncrono em JavaScript.
+
+Dúvidas? Vamos praticar juntos! 🚀

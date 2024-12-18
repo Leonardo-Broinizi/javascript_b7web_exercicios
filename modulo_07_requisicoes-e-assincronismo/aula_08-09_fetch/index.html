@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manipulação de Numbers</title>
+    <style>
+        h1 {
+            text-align: center;
+            margin-top: 2.5rem;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 3rem;
+            color: rgb(80, 80, 80);
+        }
+        .spinner {
+            border: 4px solid #f3f3f3; /* Cor de fundo */
+            border-top: 4px solid #3498db; /* Cor da borda superior */
+            border-radius: 50%; /* Deixa o elemento em formato circular */
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite; /* Animação de rotação */
+        }
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+    </style>
+</head>
+<body>
+    <h1>Olá, JavaScript!</h1>
+
+    <button onclick="loadPosts()">Carregar Posts</button>
+
+    <div id="posts" ></div>
+
+    <script type="text/javascript" src="script.js"></script>
+</body>
+</html>

@@ -17,5 +17,4 @@ function loadPosts() {
         .catch(function(error) { // O catch lida com falhas no fetch (ex.: conexão perdida ou servidor inacessível).
             console.log("Erro na requisição: ", error); 
         }); 
-}
-
+} 
